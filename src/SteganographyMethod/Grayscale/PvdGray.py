@@ -8,15 +8,15 @@ def qTable(val):
     if val in range(0,8):
         return 0, 3
     elif val in range(8,16):
-        return 8, 4
+        return 8, 3
     elif val in range(16,32):
-        return 16, 5
+        return 16, 4
     elif val in range(32,64):
-        return 32, 6
+        return 32, 5
     elif val in range(64,128):
-        return 64, 7
+        return 64, 6
     elif val in range(128,256):
-        return 128, 8
+        return 128, 7
 
 def encode(img, message):
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -37,8 +37,6 @@ def encode(img, message):
         while j < cols:
             color = int(img[i,j])
             if lastIteration:
-                print(i,j,' : ', img[i,j])
-                print(i,j+1,' : ', img[i,j+1])
                 gi, gi1 = int(img[i,j]), int(img[i,j+1])
                 diff = gi1 - gi
                 ik, n = qTable(abs(diff))
@@ -47,32 +45,32 @@ def encode(img, message):
                     bitMessage.extend([0 for i in range(n - restBit)])
                     lastIteration = False
                 bit = bitMessage[:n]
-                print(bit)
                 del bitMessage[:n]
                 b = bo.bit2int(bit)
-                # if b == 0:
-                #     imgResult[i,j] = imgResult[i,j+1]
-                #     print(i,j,' : ', imgResult[i,j])
-                #     print(i,j+1,' : ', imgResult[i,j+1])
-                #     print('=============================')
-                # else:
+
                 diffA = 0
                 if diff >= 0:
                     diffA = ik + b
                 else:
                     diffA = -1 * (ik + b)
 
-                # print('diff : ',diff)
-                # print('diffA : ',diffA)
-
                 m = abs(diffA - abs(diff))
-                # print('m : ', m)
                 if m % 2 == 0:
                     gi -= int(m/2)
                     gi1 += int(m/2)
+                    while abs(gi - gi1) != b:
+                        if gi < gi1:
+                            gi += 1
+                        else:
+                            gi1 += 1
                 else:
                     gi -= math.ceil(m/2)
                     gi1 += math.floor(m/2)
+                    while abs(gi - gi1) != b:
+                        if gi < gi1:
+                            gi += 1
+                        else:
+                            gi1 += 1
                 
                 if gi < 0:
                     gi1 -= gi
@@ -84,9 +82,6 @@ def encode(img, message):
 
                 imgResult[i,j] = gi
                 imgResult[i,j+1] = gi1
-                print(i,j,' : ', imgResult[i,j])
-                print(i,j+1,' : ', imgResult[i,j+1])
-                print('=============================')
                 j += 2
             else:
                 imgResult[i,j] = color
@@ -121,8 +116,7 @@ def decode(img):
             else:
                 break
             j += 2
-    print(bo.bit2word(bit))
-    # return bo.bit2word(bit)
+    return bo.bit2word(bit)
 
 def test(src, dest, message):
     print(bo.word2bit(message))

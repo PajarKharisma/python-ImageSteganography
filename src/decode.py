@@ -10,8 +10,7 @@ def main():
 
     # PVD
     img = cv2.imread('../img/stegoPvd.png')
-    pg.decode(img)
-    # print("Hasil Decode : " + pg.decode(img))
+    print("Hasil Decode : " + pg.decode(img))
 
 if __name__ == "__main__":
     main()
