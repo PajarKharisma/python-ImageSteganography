@@ -8,15 +8,15 @@ def qTable(val):
     if val in range(0,8):
         return 0, 3
     elif val in range(8,16):
-        return 8, 3
+        return 8, 4
     elif val in range(16,32):
-        return 16, 4
+        return 16, 5
     elif val in range(32,64):
-        return 32, 5
+        return 32, 6
     elif val in range(64,128):
-        return 64, 6
+        return 64, 7
     elif val in range(128,256):
-        return 128, 7
+        return 128, 8
 
 def encode(img, message):
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -31,44 +31,66 @@ def encode(img, message):
 
     imgResult = np.zeros((rows, cols,1),np.uint8)*255
     lastIteration = True
+    isFinish = True
     for i in range(rows):
-        for j in range(cols):
+        j = 0
+        while j < cols:
             color = int(img[i,j])
             if lastIteration:
+                print(i,j,' : ', img[i,j])
+                print(i,j+1,' : ', img[i,j+1])
                 gi, gi1 = int(img[i,j]), int(img[i,j+1])
-                diff = abs(gi - gi1)
-                ik, n = qTable(diff)
+                diff = gi1 - gi
+                ik, n = qTable(abs(diff))
                 restBit = len(bitMessage)
                 if restBit <= n:
-                    bitMessage.extend(['0' for i in range(n - restBit)])
+                    bitMessage.extend([0 for i in range(n - restBit)])
                     lastIteration = False
                 bit = bitMessage[:n]
+                print(bit)
                 del bitMessage[:n]
                 b = bo.bit2int(bit)
-                
-                diffA = ik + b
-                m = abs(diffA - diff)
-                if m % 2 == 0:
-                    m = math.floor(m)
+                # if b == 0:
+                #     imgResult[i,j] = imgResult[i,j+1]
+                #     print(i,j,' : ', imgResult[i,j])
+                #     print(i,j+1,' : ', imgResult[i,j+1])
+                #     print('=============================')
+                # else:
+                diffA = 0
+                if diff >= 0:
+                    diffA = ik + b
                 else:
-                    m = math.ceil(m)
+                    diffA = -1 * (ik + b)
+
+                # print('diff : ',diff)
+                # print('diffA : ',diffA)
+
+                m = abs(diffA - abs(diff))
+                # print('m : ', m)
+                if m % 2 == 0:
+                    gi -= int(m/2)
+                    gi1 += int(m/2)
+                else:
+                    gi -= math.ceil(m/2)
+                    gi1 += math.floor(m/2)
                 
                 if gi < 0:
-                    gi = gi
-                else:
-                    gi -= m
-                
+                    gi1 -= gi
+                    gi = 0
+
                 if gi1 > 255:
-                    gi1 = gi1
-                else:
-                    gi1 += m
+                    gi -= gi1 - 255
+                    gi1 = 255
 
                 imgResult[i,j] = gi
                 imgResult[i,j+1] = gi1
-
-                j += 1
+                print(i,j,' : ', imgResult[i,j])
+                print(i,j+1,' : ', imgResult[i,j+1])
+                print('=============================')
+                j += 2
             else:
                 imgResult[i,j] = color
+                j += 1
     
     val1, val2, val3 = cl.setCharLength(len(message))
     imgResult[rows-1, cols-1] = val1
@@ -85,10 +107,24 @@ def decode(img):
     index = 0
     bit = []
     for i in range(rows):
-        for j in range(cols):
+        j = 0
+        while j < cols:
             if index < charLength:
-                
-                pass
+                gi, gi1 = int(img[i,j]), int(img[i,j+1])
+                diff = abs(gi - gi1)
+                ik, n = qTable(diff)
+                b = bo.int2bit(abs(diff - ik))
+                fixBit = [0 for i in range(n - len(b))]
+                fixBit.extend(b)
+                bit.extend(fixBit)
+                index += n
             else:
                 break
-    return bo.bit2word(bit)
+            j += 2
+    print(bo.bit2word(bit))
+    # return bo.bit2word(bit)
+
+def test(src, dest, message):
+    print(bo.word2bit(message))
+    print(src[0,0], src[0,1])
+    print(dest[0,0], dest[0,1])
