@@ -4,7 +4,7 @@ import SteganographyMethod.Grayscale.LsbGray as lg
 
 def main():
     img = cv2.imread('../img/stegoLsb.png')
-    print("Hasil Decode : " + lg.lsbGrayExtract(img))
+    print("Hasil Decode : " + lg.decode(img))
 
 if __name__ == "__main__":
     main()

@@ -19,6 +19,6 @@ def int2bit(val):
     return result
 
 def bit2int(bit):
-    val = ''.join(bit)
+    val = ''.join(str(e) for e in bit)
     result = int(val, 2)
     return result

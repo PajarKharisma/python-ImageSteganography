@@ -15,7 +15,7 @@ def lsbVal(a, b):
 
     return result
 
-def lsbGrayEncryption(img, message):
+def encode(img, message):
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     bitMessage = bo.word2bit(message)
     bitLenght = len(bitMessage)
@@ -40,7 +40,7 @@ def lsbGrayEncryption(img, message):
 
     return imgResult
 
-def lsbGrayExtract(img):
+def decode(img):
     img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     rows, cols = img.shape[:2]
     charLength = cl.getCharLenth(img[rows-1, cols-1], img[rows-1, cols-2], img[rows-1, cols-3])
