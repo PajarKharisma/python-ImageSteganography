@@ -2,19 +2,24 @@ import cv2
 import numpy as np
 import SteganographyMethod.Grayscale.LsbGray as lg
 import SteganographyMethod.Grayscale.PvdGray as pg
+import SteganographyMethod.Color.LsbColor as lc
 
 def main():
     img = cv2.imread('../img/rem.jpg')
-    message = "type your message here.."
+    message = "In Syaa Allah lulus 3 semester.."
 
-    # LSB
+    # LSB GRAY
     # imgResult = lg.encode(img, message)
-    # cv2.imwrite('../img/stegoLsb.png',imgResult)
+    # cv2.imwrite('../img/stegoLsbGray.png',imgResult)
     # print("Proses Encoding Selesai")
 
-    # PVD
-    imgResult = pg.encode(img, message)
-    cv2.imwrite('../img/stegoPvd.png', imgResult)
+    # PVD GRAY
+    # imgResult = pg.encode(img, message)
+    # cv2.imwrite('../img/stegoPvdGray.png', imgResult)
+    # print("Proses Encoding Selesai")
+
+    imgResult = lc.encode(img, message)
+    cv2.imwrite('../img/stegoLsbColor.png',imgResult)
     print("Proses Encoding Selesai")
 
 if __name__ == "__main__":
