@@ -117,8 +117,3 @@ def decode(img):
                 break
             j += 2
     return bo.bit2word(bit)
-
-def test(src, dest, message):
-    print(bo.word2bit(message))
-    print(src[0,0], src[0,1])
-    print(dest[0,0], dest[0,1])

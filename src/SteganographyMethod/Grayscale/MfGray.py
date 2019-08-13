@@ -31,14 +31,13 @@ def encode(img, message):
 
     imgResult = np.zeros((rows, cols,1),np.uint8)*255
     lastIteration = True
-    isFinish = True
     for i in range(rows):
         j = 0
         while j < cols:
             color = int(img[i,j])
             if lastIteration:
                 gi, gi1 = int(img[i,j]), int(img[i,j+1])
-                diff = gi1 - gi
+                diff = abs(gi - gi1)
                 ik, n = qTable(abs(diff))
                 restBit = len(bitMessage)
                 if restBit <= n:
@@ -48,40 +47,63 @@ def encode(img, message):
                 del bitMessage[:n]
                 b = bo.bit2int(bit)
 
-                diffA = 0
-                if diff >= 0:
-                    diffA = ik + b
-                else:
-                    diffA = -1 * (ik + b)
+                r = (gi + gi1) % math.pow(2,n)
+                m = abs(r - b)
+                m1 = abs(math.pow(2,n) - m)
 
-                m = abs(diffA - abs(diff))
-                if m % 2 == 0:
-                    gi -= int(m/2)
-                    gi1 += int(m/2)
-                    while abs(gi - gi1) != b:
-                        if gi < gi1:
-                            gi += 1
-                        else:
-                            gi1 += 1
-                else:
+                if (r > b) and (m <= math.pow(2,n)/2) and (gi >= gi1):
                     gi -= math.ceil(m/2)
+                    gi1 -= math.floor(m/2)
+                elif (r > b) and (m <= math.pow(2,n)/2) and (gi < gi1):
+                    gi -= math.ceil(m/2)
+                    gi1 -= math.floor(m/2)
+                elif (r > b) and (m > math.pow(2,n)/2) and (gi >= gi1):
+                    gi += math.ceil(m1/2)
+                    gi1 += math.floor(m1/2)
+                elif (r > b) and (m > math.pow(2,n)/2) and (gi < gi1):
+                    gi += math.ceil(m1/2)
+                    gi1 += math.floor(m1/2)
+                elif (r <= b) and (m <= math.pow(2,n)/2) and (gi >= gi1):
+                    gi += math.ceil(m/2)
                     gi1 += math.floor(m/2)
-                    while abs(gi - gi1) != b:
-                        if gi < gi1:
-                            gi += 1
-                        else:
-                            gi1 += 1
-                
-                if gi < 0:
-                    gi1 -= gi
-                    gi = 0
+                elif (r <= b) and (m <= math.pow(2,n)/2) and (gi < gi1):
+                    gi += math.ceil(m/2)
+                    gi1 += math.floor(m/2)
+                elif (r <= b) and (m > math.pow(2,n)/2) and (gi >= gi1):
+                    gi -= math.ceil(m1/2)
+                    gi1 -= math.floor(m1/2)
+                elif (r <= b) and (m > math.pow(2,n)/2) and (gi < gi1):
+                    gi -= math.ceil(m1/2)
+                    gi1 -= math.floor(m1/2)
 
-                if gi1 > 255:
-                    gi -= gi1 - 255
-                    gi1 = 255
-
-                imgResult[i,j] = gi
-                imgResult[i,j+1] = gi1
+                po1 = img[i,j]
+                po2 = img[i,j+1]
+                if (po1 == 0 or po2 == 0) and (gi < 0 or gi1 < 0):
+                    gi += math.pow(2,n)
+                    gi1 += math.pow(2,n)
+                    img[i,j] = gi
+                    img[i,j+1] = gi1
+                elif (po1 == 255 or po2 == 255) and (gi > 255 or gi1 > 255):
+                    gi -= math.pow(2,n)
+                    gi1 -= math.pow(2,n)
+                    img[i,j] = gi
+                    img[i,j+1] = gi1
+                elif diff > 128:
+                    if gi < 0 and gi1 >= 0:
+                        img[i,j] = 0
+                        img[i,j+1] = gi + gi1
+                    elif gi >= 0 and gi1 < 0:
+                        img[i,j] = gi + gi1
+                        img[i,j+1] = 0
+                    elif gi > 255 and gi1 >= 0:
+                        img[i,j] = 255
+                        img[i,j+1] = gi1 + (gi - 255)
+                    elif gi >= 0 and gi1 >255:
+                        img[i,j] = gi + (gi1 - 255)
+                        img[i,j+1] = 255
+                else:
+                    imgResult[i,j] = gi
+                    imgResult[i,j+1] = gi1
                 j += 2
             else:
                 imgResult[i,j] = color
@@ -93,3 +115,27 @@ def encode(img, message):
     imgResult[rows-1, cols-3] = val3
 
     return imgResult
+
+def decode(img):
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    rows, cols = img.shape[:2]
+    charLength = cl.getCharLenth(img[rows-1, cols-1], img[rows-1, cols-2], img[rows-1, cols-3])
+    charLength = charLength * 8
+    index = 0
+    bit = []
+    for i in range(rows):
+        j = 0
+        while j < cols:
+            if index < charLength:
+                gi, gi1 = int(img[i,j]), int(img[i,j+1])
+                diff = abs(gi - gi1)
+                ik, n = qTable(diff)
+                b = bo.int2bit(int((gi + gi1) % math.pow(2,n)))
+                fixBit = [0 for i in range(n - len(b))]
+                fixBit.extend(b)
+                bit.extend(fixBit)
+                index += n
+            else:
+                break
+            j += 2
+    return bo.bit2word(bit)

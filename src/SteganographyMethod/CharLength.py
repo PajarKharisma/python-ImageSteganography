@@ -14,4 +14,7 @@ def setCharLength(val):
     return char1, char2, char3
 
 def getCharLenth(a,b,c):
-    return int((a*b)+c)
+    a = int(a)
+    b = int(b)
+    c = int(c)
+    return int((a * b) + c)
