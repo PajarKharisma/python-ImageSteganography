@@ -32,4 +32,5 @@ pipenv run decoding.py
 ~~~
 
   
-**Note : ** by default, message stored in msg directory and image stored in img directory
+### Note : 
+by default, message stored in msg directory and image stored in img directory
