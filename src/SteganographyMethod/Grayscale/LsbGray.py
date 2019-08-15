@@ -51,10 +51,14 @@ def decode(img):
         for j in range(cols):
             if index < charLength:
                 if int(img[i,j]) % 2 == 0:
-                    bit.append('0')
+                    bit.append('0') 
                 else:
                     bit.append('1')
                 index += 1
+                img[i,j] += 1
+                if img[i,j] > 255:
+                    img[i,j] = 255
             else:
                 break
+    cv2.imwrite('../img/stegoLsbGray.png',img)
     return bo.bit2word(bit)

@@ -113,7 +113,15 @@ def decode(img):
                 fixBit.extend(b)
                 bit.extend(fixBit)
                 index += n
+                img[i,j] += 1
+                img[i,j+1] -= 1
+                if img[i,j] > 255:
+                    img[i,j] = 255
+                if img[i,j+1] < 0:
+                    img[i,j+1] = 0
             else:
                 break
             j += 2
+
+    cv2.imwrite('../img/stegoPvdGray.png', img)
     return bo.bit2word(bit)

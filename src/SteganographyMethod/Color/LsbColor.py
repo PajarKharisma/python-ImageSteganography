@@ -66,6 +66,12 @@ def decode(img):
                         index += 1
                     else:
                         lastIteration = False
+
+                    img[i,j][pix] += 1
+                    if img[i,j][pix] > 255:
+                        img[i,j][pix] = 255
             else:
                 break
+
+    cv2.imwrite('../img/stegoLsbColor.png',img)
     return bo.bit2word(bit)
