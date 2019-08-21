@@ -54,6 +54,7 @@ def decode(img):
     index = 0
     bit = []
     lastIteration = True
+    toogle = True
     for i in range(rows):
         for j in range(cols):
             if lastIteration:
@@ -67,9 +68,15 @@ def decode(img):
                     else:
                         lastIteration = False
 
-                    img[i,j][pix] += 1
-                    if img[i,j][pix] > 255:
+                    if toogle:
                         img[i,j][pix] = 255
+                        toogle = False
+                    else:
+                        img[i,j][pix] = 0
+                        toogle = True
+                    # img[i,j][pix] += 1
+                    # if img[i,j][pix] > 255:
+                    #     img[i,j][pix] = 255
             else:
                 break
 

@@ -16,7 +16,7 @@ def main():
     # img = cv2.imread('../img/stegoPvdGray.png')
     # print("Hasil Decode : " + pg.decode(img))
 
-    # PVD GRAY
+    # MF GRAY
     # img = cv2.imread('../img/stegoMfGray.png')
     # print("Hasil Decode : " + mg.decode(img))
 

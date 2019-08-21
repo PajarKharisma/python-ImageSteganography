@@ -47,6 +47,7 @@ def decode(img):
     charLength = charLength * 8
     index = 0
     bit = []
+    toogle = True
     for i in range(rows):
         for j in range(cols):
             if index < charLength:
@@ -55,9 +56,15 @@ def decode(img):
                 else:
                     bit.append('1')
                 index += 1
-                img[i,j] += 1
-                if img[i,j] > 255:
+                if toogle:
                     img[i,j] = 255
+                    toogle = False
+                else:
+                    img[i,j] = 0
+                    toogle = True
+                # img[i,j] += 1
+                # if img[i,j] > 255:
+                #     img[i,j] = 255
             else:
                 break
     cv2.imwrite('../img/stegoLsbGray.png',img)

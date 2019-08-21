@@ -138,12 +138,14 @@ def decode(img):
                         fixBit.extend(b)
                         bit.extend(fixBit)
                         index += n
-                        img[i,j][pix] += 2
-                        img[i,j+1][pix] -= 1
-                        if img[i,j][pix] > 255:
-                            img[i,j][pix] = 255
-                        if img[i,j+1][pix] < 0:
-                            img[i,j+1][pix] = 0
+                        img[i,j][pix] = 255
+                        img[i,j+1][pix] = 0
+                        # img[i,j][pix] += 2
+                        # img[i,j+1][pix] -= 1
+                        # if img[i,j][pix] > 255:
+                        #     img[i,j][pix] = 255
+                        # if img[i,j+1][pix] < 0:
+                        #     img[i,j+1][pix] = 0
                     else:
                         lastIteration = False
             else:
