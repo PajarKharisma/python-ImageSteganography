@@ -1,36 +1,23 @@
-# python-ImageSteganography
+<h2 align="center">Steganography</h2>
 
-1. Clone this project to your computer.
->open gitbash or command line
-~~~
-git clone https://github.com/PajarKharisma/python-ImageSteganography.git
-~~~
+<br><br>
 
-2. Make sure python 3 has been installed in your computer.
+### Requirements :
+- Python >= 3
+- Numpy
+- Opencv
+<br><br>
 
-3. Install pipenv
->open command line or terminal
-~~~
-pip install pipenv
-~~~
+### How to install?
+1. Clone this project `git clone https://github.com/PajarKharisma/python-ImageSteganography.git`
 
-4. Install all requirement package from pipfile
->open terminal in root project directory
-~~~
-pipenv install
-~~~
+2. Install all requirements. You can type `pip install -r requirements.txt` to install it.
 
-5. To run program, enter to src directory
->for encoding message
-~~~
-pipenv run encoding.py
-~~~
+3. To run program, enter to src directory
+>for encoding message `python encoding.py`
 
->for decoding message
-~~~
-pipenv run decoding.py
-~~~
+>for decoding message `python decoding.py`
+<br><br>
 
-  
 ### Note : 
 by default, message stored in msg directory and image stored in img directory
