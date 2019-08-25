@@ -13,10 +13,11 @@
 
 2. Install all requirements. You can type `pip install -r requirements.txt` to install it.
 
-3. To run program, enter to src directory
->for encoding message `python encoding.py`
+3. Enter to src directory.
 
->for decoding message `python decoding.py`
+4. Type `python encoding.py` to run encoding message.
+
+5. Type `python decoding.py` to run decoding message.
 <br><br>
 
 ### Note : 
