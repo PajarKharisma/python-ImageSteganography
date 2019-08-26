@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import SubProcess.Measurement as mse
 import SteganographyMethod.Grayscale.LsbGray as lg
 import SteganographyMethod.Grayscale.PvdGray as pg
 import SteganographyMethod.Grayscale.MfGray as mg
@@ -31,6 +32,10 @@ def main():
     # MF COLOR
     img = cv2.imread('../img/stegoMfColor.png')
     print("Hasil Decode : " + mc.decode(img))
+
+    imgSrc = cv2.imread('../img/rem.jpg')
+    print("Nilai MSE : %0.3f" % (mse.getMseValue(imgSrc, img)))
+    print("Nilai PNSR : %0.3f" % (mse.getPnsrValue(imgSrc, img)))
 
 if __name__ == "__main__":
     main()
