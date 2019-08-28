@@ -1,9 +1,12 @@
-import SubProcess.BitOperation as bo
-import SteganographyMethod.CharLength as cl
+# module yg disediakan python
 import numpy as np
 import cv2
 
+# module yg dibuat sendiri
+import SubProcess.BitOperation as bo
+import SteganographyMethod.CharLength as cl
 
+# fungsi mendapatkan nilai bit
 def lsbVal(a, b):
     result = 0
     if a == b:
@@ -15,14 +18,24 @@ def lsbVal(a, b):
 
     return result
 
+# fungsi encode pesan
 def encode(img, message):
+    # proses merubah pesan string menjadi bit
     bitMessage = bo.word2bit(message)
+
+    # mendapatkan panjang pesan setelah dirubah menjadi bit
     bitLenght = len(bitMessage)
     index = 0
 
+    # proses mendapatkan jumlah baris dan kolom
     rows, cols = img.shape[:2]
+
+    # inisialisasi image baru tempat pesan akan disimpan
     imgResult = np.zeros((rows, cols,3),np.uint8)*255
     lastIteration = True
+
+    # proses menyisipkan pesan ke dalam gambar denganaturan lsb
+    # karena citra berwarna, setiap pixel dapat menampung 3 bit pesan. Setiap bit disimpan dalam chanel R, G, dan B
     for i in range(rows):
         for j in range(cols):
             color = img[i,j]
@@ -42,19 +55,31 @@ def encode(img, message):
             else:
                 imgResult[i,j] = color
     
+    # kombinasi nilai val1, val2, val3 akan menyimpan nilai infromasi panjang pesan.
+    # Nilai ini dibutuhkan ketika proses decode
     val1, val2, val3 = cl.setCharLength(len(message))
+
+    # ketiga nilai tersebut akan disimpan pada pixel terakhir
     imgResult[rows-1, cols-1] = [val1, val2, val3]
 
     return imgResult
 
 def decode(img):
+    # proses mendapatkan resolusi gambar
     rows, cols = img.shape[:2]
+
+    # proses mendapatkan nilai panjang pesan. Sehingga proses extraksi akan berhenti ketika semua pesan sudah diextract
     charLength = cl.getCharLenth(img[rows-1, cols-1][0], img[rows-1, cols-1][1], img[rows-1, cols-1][2])
+    
+    # panjang karakter dikalikan dengan 8 karena 1 karakter = 8 bit integer
     charLength = charLength * 8
     index = 0
     bit = []
     lastIteration = True
     toogle = True
+
+    # proses extraksi pesan dengan cara menelusuri setiap pixel pada gambar
+    # proses menelusuri akan berhenti ketika semua pesan sudah diextract
     for i in range(rows):
         for j in range(cols):
             if lastIteration:

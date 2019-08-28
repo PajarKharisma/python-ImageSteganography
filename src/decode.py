@@ -1,5 +1,8 @@
+# module yg disediakan python
 import cv2
 import numpy as np
+
+# module yg dibuat sendiri
 import SubProcess.Measurement as msr
 import SteganographyMethod.Grayscale.LsbGray as lg
 import SteganographyMethod.Grayscale.PvdGray as pg

@@ -1,5 +1,8 @@
+# module yg disediakan python
 import cv2
 import numpy as np
+
+# module yg dibuat sendiri
 import SteganographyMethod.Grayscale.LsbGray as lg
 import SteganographyMethod.Grayscale.PvdGray as pg
 import SteganographyMethod.Grayscale.MfGray as mg
@@ -8,8 +11,14 @@ import SteganographyMethod.Color.PvdColor as pc
 import SteganographyMethod.Color.MfColor as mc
 
 def main():
+    # load gambar
     img = cv2.imread('../img/rem.jpg')
+
+    # load pesan
     message = open("../msg/message.txt", "r").read()
+
+    # imgResult, gambar hasil encode
+    # imwrite, fungsi untuk menyimpan gambar hasil encode
 
     # LSB GRAY
     # imgResult = lg.encode(img, message)

@@ -1,6 +1,7 @@
 import cv2
 import math
 
+# fungsi untuk menghitung nilai MSE
 def getMseValue(imgSrc, imgDst):
     rows, cols = imgDst.shape[:2]
     imgSrc = cv2.resize(imgSrc, (cols, rows))
@@ -15,6 +16,7 @@ def getMseValue(imgSrc, imgDst):
     
     return result / (rows * cols)
 
+# fungsi untuk menghitung nilai PNSR
 def getPnsrValue(imgSrc, imgDst):
     rows, cols = imgDst.shape[:2]
     mse = getMseValue(imgSrc, imgDst)
