@@ -73,7 +73,6 @@ def decode(img):
     charLength = charLength * 8
     index = 0
     bit = []
-    toogle = True
     
     # proses extraksi pesan dengan cara menelusuri setiap pixel pada gambar
     # proses menelusuri akan berhenti ketika semua pesan sudah diextract
@@ -82,19 +81,17 @@ def decode(img):
             if index < charLength:
                 if int(img[i,j]) % 2 == 0:
                     bit.append('0') 
+                    img[i,j] += 1
                 else:
                     bit.append('1')
+                    img[i,j] -= 1
                 index += 1
-                if toogle:
-                    img[i,j] = 255
-                    toogle = False
-                else:
+                
+                if img[i,j] < 0:
                     img[i,j] = 0
-                    toogle = True
-                # img[i,j] += 1
-                # if img[i,j] > 255:
-                #     img[i,j] = 255
+                if img[i,j] > 255:
+                    img[i,j] = 255
             else:
                 break
-    cv2.imwrite('../img/stegoLsbGray.png',img)
+    cv2.imwrite('../img/lsb-gray/after-decode.png',img)
     return bo.bit2word(bit)

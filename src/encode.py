@@ -24,35 +24,35 @@ def main():
     # mode 1 untuk gambar grayscale, mode 0 untuk gambar berwarna
 
     # LSB GRAY
-    # path = '../img/lsb-gray/stegoLsbGray.png'
+    # path = '../img/lsb-gray/after-encode.png'
     # mode = 1
     # imgResult = lg.encode(img, message)
     # cv2.imwrite(path, imgResult)
     # print("Proses encoding citra grayscale dengan metode Least Significant Bit selesai")
 
     # PVD GRAY
-    # path = '../img/pvd-gray/stegoPvdGray.png'
+    # path = '../img/pvd-gray/after-encode.png'
     # mode = 1
     # imgResult = pg.encode(img, message)
     # cv2.imwrite(path, imgResult)
     # print("Proses encoding citra grayscale dengan metode Pixel Value Difference selesai")
 
     # MF GRAY
-    # path = '../img/mf-gray/stegoMfGray.png'
+    # path = '../img/mf-gray/after-encode.png'
     # mode = 1
     # imgResult = mg.encode(img, message)
     # cv2.imwrite(path, imgResult)
     # print("Proses encoding citra grayscale dengan metode Modulus Function selesai")
 
     # LSB COLOR
-    # path = '../img/lsb-color/stegoLsbColor.png'
+    # path = '../img/lsb-color/after-encode.png'
     # mode = 0
     # imgResult = lc.encode(img, message)
     # cv2.imwrite(path, imgResult)
     # print("Proses encoding citra color dengan metode Least Significant Bit selesai")
 
     # PVD COLOR
-    # path = '../img/pvd-color/stegoPvdColor.png'
+    # path = '../img/pvd-color/after-encode.png'
     # mode = 0
     # imgResult = pc.encode(img, message)
     # cv2.imwrite(path, imgResult)
@@ -60,7 +60,7 @@ def main():
 
 
     # MF COLOR
-    path = '../img/mf-color/stegoMfColor.png'
+    path = '../img/mf-color/after-encode.png'
     mode = 0
     imgResult = mc.encode(img, message)
     cv2.imwrite(path, imgResult)

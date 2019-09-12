@@ -87,23 +87,20 @@ def decode(img):
                     if index < charLength:
                         if int(img[i,j][pix]) % 2 == 0:
                             bit.append('0')
+                            img[i,j][pix] += 1
                         else:
                             bit.append('1')
+                            img[i,j][pix] -= 1
                         index += 1
+
+                        if img[i,j][pix] < 0:
+                            img[i,j][pix] = 0
+                        if img[i,j][pix] > 255:
+                            img[i,j][pix] = 255
                     else:
                         lastIteration = False
-
-                    if toogle:
-                        img[i,j][pix] = 255
-                        toogle = False
-                    else:
-                        img[i,j][pix] = 0
-                        toogle = True
-                    # img[i,j][pix] += 1
-                    # if img[i,j][pix] > 255:
-                    #     img[i,j][pix] = 255
             else:
                 break
 
-    cv2.imwrite('../img/stegoLsbColor.png',img)
+    cv2.imwrite('../img/lsb-color/after-decode.png',img)
     return bo.bit2word(bit)
