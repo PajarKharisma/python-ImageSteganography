@@ -3,7 +3,6 @@ import cv2
 import numpy as np
 
 # module yg dibuat sendiri
-import SubProcess.Measurement as msr
 import SteganographyMethod.Grayscale.LsbGray as lg
 import SteganographyMethod.Grayscale.PvdGray as pg
 import SteganographyMethod.Grayscale.MfGray as mg
@@ -13,32 +12,28 @@ import SteganographyMethod.Color.MfColor as mc
 
 def main():
     # LSB GRAY
-    # img = cv2.imread('../img/stegoLsbGray.png')
+    # img = cv2.imread('../img/lsb-gray/stegoLsbGray.png')
     # print("Hasil Decode : " + lg.decode(img))
 
     # PVD GRAY
-    # img = cv2.imread('../img/stegoPvdGray.png')
+    # img = cv2.imread('../img/pvd-gray/stegoPvdGray.png')
     # print("Hasil Decode : " + pg.decode(img))
 
     # MF GRAY
-    # img = cv2.imread('../img/stegoMfGray.png')
+    # img = cv2.imread('../img/mf-gray/stegoMfGray.png')
     # print("Hasil Decode : " + mg.decode(img))
 
     # LSB COLOR
-    # img = cv2.imread('../img/stegoLsbColor.png')
+    # img = cv2.imread('../img/lsb-color/stegoLsbColor.png')
     # print("Hasil Decode : " + lc.decode(img))
 
     # PVD COLOR
-    # img = cv2.imread('../img/stegoPvdColor.png')
+    # img = cv2.imread('../img/pvd-color/stegoPvdColor.png')
     # print("Hasil Decode : " + pc.decode(img))
 
     # MF COLOR
-    img = cv2.imread('../img/stegoMfColor.png')
-    print("Hasil Decode : " + mc.decode(img))
-
-    imgSrc = cv2.imread('../img/rem.jpg')
-    print("Nilai MSE : %0.3f" % (msr.getMseValue(imgSrc, img)))
-    print("Nilai PNSR : %0.3f" % (msr.getPnsrValue(imgSrc, img)))
+    # img = cv2.imread('../img/mf-color/stegoMfColor.png')
+    # print("Hasil Decode : " + mc.decode(img))
 
 if __name__ == "__main__":
     main()
