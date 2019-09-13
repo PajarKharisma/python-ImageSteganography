@@ -17,27 +17,33 @@ def main():
 
     # LSB GRAY
     # img = cv2.imread('../img/lsb-gray/%s' % imgName)
-    # print("Hasil Decode : " + lg.decode(img))
+    # result = lg.decode(img)
 
     # PVD GRAY
     # img = cv2.imread('../img/pvd-gray/%s' % imgName)
-    # print("Hasil Decode : " + pg.decode(img))
+    # result = pg.decode(img)
 
     # MF GRAY
     # img = cv2.imread('../img/mf-gray/%s' % imgName)
-    # print("Hasil Decode : " + mg.decode(img))
+    # result = mg.decode(img)
 
     # LSB COLOR
     # img = cv2.imread('../img/lsb-color/%s' % imgName)
-    # print("Hasil Decode : " + lc.decode(img))
+    # result = lc.decode(img)
 
     # PVD COLOR
     # img = cv2.imread('../img/pvd-color/%s' % imgName)
-    # print("Hasil Decode : " + pc.decode(img))
+    # result = pc.decode(img)
 
     # MF COLOR
     img = cv2.imread('../img/mf-color/%s' % imgName)
-    print("Hasil Decode : " + mc.decode(img))
+    result = mc.decode(img)
+
+    decodeFile = open("../msg/decode-result.txt", "w")
+    decodeFile.write(result)
+    decodeFile.close()
+
+    print("Hasil Decode : %s" % result)
 
 if __name__ == "__main__":
     main()
