@@ -13,7 +13,7 @@ import SteganographyMethod.Color.MfColor as mc
 
 def main():
     # load gambar
-    img = cv2.imread('../img/rem.jpg')
+    img = cv2.imread('../img/Daisy.jpg')
 
     # load pesan
     message = open("../msg/message.txt", "r").read()
@@ -52,19 +52,19 @@ def main():
     # print("Proses encoding citra color dengan metode Least Significant Bit selesai")
 
     # PVD COLOR
-    # path = '../img/pvd-color/after-encode.png'
-    # mode = 0
-    # imgResult = pc.encode(img, message)
-    # cv2.imwrite(path, imgResult)
-    # print("Proses encoding citra color dengan metode Pixel Value Difference selesai")
+    path = '../img/pvd-color/after-encode.png'
+    mode = 0
+    imgResult = pc.encode(img, message)
+    cv2.imwrite(path, imgResult)
+    print("Proses encoding citra color dengan metode Pixel Value Difference selesai")
 
 
     # MF COLOR
-    path = '../img/mf-color/after-encode.png'
-    mode = 0
-    imgResult = mc.encode(img, message)
-    cv2.imwrite(path, imgResult)
-    print("Proses encoding citra color dengan metode Modulus Function selesai")
+    # path = '../img/mf-color/after-encode.png'
+    # mode = 0
+    # imgResult = mc.encode(img, message)
+    # cv2.imwrite(path, imgResult)
+    # print("Proses encoding citra color dengan metode Modulus Function selesai")
 
     imgDst = cv2.imread(path)
     print("Nilai MSE : %0.3f" % (msr.getMseValue(img, imgDst, mode)))

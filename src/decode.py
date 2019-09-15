@@ -28,18 +28,18 @@ def main():
     # result = mg.decode(img)
 
     # LSB COLOR
-    # img = cv2.imread('../img/lsb-color/%s' % imgName)
-    # result = lc.decode(img)
+    img = cv2.imread('../img/lsb-color/%s' % imgName)
+    result = lc.decode(img)
 
     # PVD COLOR
-    # img = cv2.imread('../img/pvd-color/%s' % imgName)
-    # result = pc.decode(img)
+    img = cv2.imread('../img/pvd-color/%s' % imgName)
+    result = pc.decode(img)
 
     # MF COLOR
-    img = cv2.imread('../img/mf-color/%s' % imgName)
-    result = mc.decode(img)
+    # img = cv2.imread('../img/mf-color/%s' % imgName)
+    # result = mc.decode(img)
 
-    decodeFile = open("../msg/decode-result.txt", "w")
+    decodeFile = open("../msg/decode-result.txt", "w", encoding='utf-8')
     decodeFile.write(result)
     decodeFile.close()
 
