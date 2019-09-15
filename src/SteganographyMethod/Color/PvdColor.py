@@ -14,13 +14,13 @@ def qTable(val):
     elif val in range(8,16):
         return 8, 3
     elif val in range(16,32):
-        return 16, 4
+        return 16, 3
     elif val in range(32,64):
-        return 32, 5
+        return 32, 3
     elif val in range(64,128):
-        return 64, 6
+        return 64, 3
     elif val in range(128,256):
-        return 128, 7
+        return 128, 3
 
 # fungsi encode pesan
 def encode(img, message):
