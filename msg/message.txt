@@ -1,16 +1,157 @@
-When your legs don't work like they used to before
-And I can't sweep you off of your feet
-Will your mouth still remember the taste of my love
-Will your eyes still smile from your cheeks
-And darling I will be loving you 'til we're 70
-And baby my heart could still fall as hard at 23
-And I'm thinking 'bout how people fall in love in mysterious ways
-Maybe just the touch of a hand
-Oh me I fall in love with you every single day
-And I just wanna tell you I am
-So honey now
-Take me into your loving arms
-Kiss me under the light of a thousand stars
-Place your head on my beating heart
-I'm thinking out loud
-Maybe we found love right where we are
+Steganografi (steganography) adalah ilmu dan seni menyembunyikan pesan rahasia (hiding message)  sedemikian sehingga keberadaan (eksistensi) pesan tidak terdeteksi oleh indera manusia. 
+Kata steganorafi berasal dari Bahaya Yunani yang berarti “tulisan tersembunyi” (covered writing). 
+Steganografi membutuhkan dua properti: wadah penampung dan data rahasia yang akan disembunyikan. 
+Steganografi membutuhkan dua properti: wadah penampung dan data rahasia yang akan disembunyikan. 
+Steganografi dapat dipandang sebagai kelanjutan kriptografi. Jika pada kriptografi, data yang telah disandikan (ciphertext) tetap tersedia, maka dengan steganografi cipherteks dapat disembunyikan sehingga pihak ketiga tidak mengetahui keberadaannya. 
+Di negara-negara yang melakukan penyensoran informasi, steganografi sering digunakan untuk menyembunyikan pesan-pesan melalui gambar (images), video, atau suara (audio). 
+Steganografi sudah dikenal oleh bangsa Yunani. Herodatus, penguasa Yunani, mengirim pesan rahasia dengan menggunakan kepala budak atau prajurit sebagai media. Dalam hal ini, rambut budak dibotaki, lalu pesan rahasia ditulis pada kulit kepala budak. Ketika rambut budak tumbuh, budak tersebut diutus untuk membawa pesan rahasia di balik rambutnya. 
+Bangsa Romawi mengenal steganografi dengan menggunakan tinta tak-tampak (invisible ink) untuk menuliskan pesan. Tinta tersebut dibuat dari campuran sari buah, susu, dan cuka. Jika tinta digunakan untuk menulis maka tulisannya tidak tampak. Tulisan di atas kertas dapat dibaca dengan cara memanaskan kertas tersebut.
+Sebagai contoh ilustrasi, di bawah ini adalah citra lada (peppers.bmp) yang akan digunakan untuk menyembunyikan sebuah dokumen word (hendro.doc). 
+Steganografi yang dibahas di sini adalah penyembunyian data di dalam citra digital saja. Meskipun demikian, penyembunyian data dapat juga dilakukan pada wadah berupa suara digital, teks, ataupun video. 
+Penyembunyian data rahasia ke dalam citra digital akan mengubah kualitas citra tersebut. Kriteria yang harus diperhatikan dalam penyembunyian data adalah: 
+Fidelity. Mutu citra penampung tidak jauh berubah. Setelah penambahan data rahasia, citra hasil steganografi masih terlihat dengan baik. Pengamat tidak mengetahui kalau di dalam citra tersebut terdapat data rahasia. 
+Robustness. Data yang disembunyikan harus tahan terhadap manipulasi yang dilakukan pada citra penampung (seperti pengubahan kontras, penajaman, pemampatan, rotasi, perbesaran gambar, pemotongan (cropping), enkripsi, dan sebagainya). Bila pada citra dilakukan operasi pengolahan citra, maka data yang disembunyikan tidak rusak. 
+Recovery. Data yang disembunyikan harus dapat diungkapkan kembali (recovery). Karena tujuan steganografi adalah data hiding, maka sewaktu-waktu data rahasia di dalam citra penampung harus dapat diambil kembali untuk digunakan lebih lanjut.
+Penyembunyian data dilakukan dengan mengganti bit-bit data di dalam segmen citra dengan bit-bit data rahasia. Metode  yang paling sederhana adalah metode modifikasi LSB (Least Significant Bit Modification). 
+Pada susunan bit di dalam sebuah byte (1 byte = 8 bit), ada bit yang paling berarti (most significant bit atau MSB) dan bit yang  paling  kurang berarti (least significant bit atau LSB). 
+Bit yang cocok untuk diganti adalah bit LSB, sebab perubahan tersebut hanya mengubah nilai byte satu lebih tinggi atau satu lebih rendah dari nilai sebelumnya.
+Misalkan 6 byte tersebut menyatakan warna merah, maka perubahan satu bit LSB tidak mengubah warna merah tersebut secara berarti.  Lagi pula, mata manusia tidak dapat membedakan perubahan yang kecil. 
+Untuk memperkuat teknik penyembunyian data, bit-bit data rahasia tidak digunakan mengganti byte-byte yang berurutan, namun dipilih susunan byte secara acak. Misalnya jika terdapat 50 byte dan 6 bit data yang akan disembunyikan, maka maka byte yang diganti bit LSB-nya dipilih secara acak, misalkan byte nomor 36, 5, 21, 10, 18, 49. 
+Bilangan acak dapat dibangkitkan dengan program pseudorandom-number-generator (PRNG). PRNG menggunakan kunci rahasia untuk membangkitkan posisi pixel yang akan digunakan untuk menyembunyikan bit-bit. 
+PRNG dibangun dalam sejumlah cara, salah satunya dengan menggunakan algoritma kriptografi berbasis blok (block cipher). Tujuan dari enkripsi adalah menghasilkan sekumpulan bilangan acak  yang sama untuk setiap kunci enkripsi yang sama. Bilangan acak dihasilkan dengan cara memilih bit-bit dari sebuah blok data hasil enkripsi. 
+Sayangnya, metode modifikasi LSB kurang bagus untuk steganografi, karena robustness-nya rendah. Selain itu, dapat terjadi kasus penurunan jumlah warna (fidelity rendah).
+Steganografi (steganography) adalah ilmu dan seni menyembunyikan pesan rahasia (hiding message)  sedemikian sehingga keberadaan (eksistensi) pesan tidak terdeteksi oleh indera manusia. 
+Kata steganorafi berasal dari Bahaya Yunani yang berarti “tulisan tersembunyi” (covered writing). 
+Steganografi membutuhkan dua properti: wadah penampung dan data rahasia yang akan disembunyikan. 
+Steganografi membutuhkan dua properti: wadah penampung dan data rahasia yang akan disembunyikan. 
+Steganografi dapat dipandang sebagai kelanjutan kriptografi. Jika pada kriptografi, data yang telah disandikan (ciphertext) tetap tersedia, maka dengan steganografi cipherteks dapat disembunyikan sehingga pihak ketiga tidak mengetahui keberadaannya. 
+Di negara-negara yang melakukan penyensoran informasi, steganografi sering digunakan untuk menyembunyikan pesan-pesan melalui gambar (images), video, atau suara (audio). 
+Steganografi sudah dikenal oleh bangsa Yunani. Herodatus, penguasa Yunani, mengirim pesan rahasia dengan menggunakan kepala budak atau prajurit sebagai media. Dalam hal ini, rambut budak dibotaki, lalu pesan rahasia ditulis pada kulit kepala budak. Ketika rambut budak tumbuh, budak tersebut diutus untuk membawa pesan rahasia di balik rambutnya. 
+Bangsa Romawi mengenal steganografi dengan menggunakan tinta tak-tampak (invisible ink) untuk menuliskan pesan. Tinta tersebut dibuat dari campuran sari buah, susu, dan cuka. Jika tinta digunakan untuk menulis maka tulisannya tidak tampak. Tulisan di atas kertas dapat dibaca dengan cara memanaskan kertas tersebut.
+Sebagai contoh ilustrasi, di bawah ini adalah citra lada (peppers.bmp) yang akan digunakan untuk menyembunyikan sebuah dokumen word (hendro.doc). 
+Steganografi yang dibahas di sini adalah penyembunyian data di dalam citra digital saja. Meskipun demikian, penyembunyian data dapat juga dilakukan pada wadah berupa suara digital, teks, ataupun video. 
+Penyembunyian data rahasia ke dalam citra digital akan mengubah kualitas citra tersebut. Kriteria yang harus diperhatikan dalam penyembunyian data adalah: 
+Fidelity. Mutu citra penampung tidak jauh berubah. Setelah penambahan data rahasia, citra hasil steganografi masih terlihat dengan baik. Pengamat tidak mengetahui kalau di dalam citra tersebut terdapat data rahasia. 
+Robustness. Data yang disembunyikan harus tahan terhadap manipulasi yang dilakukan pada citra penampung (seperti pengubahan kontras, penajaman, pemampatan, rotasi, perbesaran gambar, pemotongan (cropping), enkripsi, dan sebagainya). Bila pada citra dilakukan operasi pengolahan citra, maka data yang disembunyikan tidak rusak. 
+Recovery. Data yang disembunyikan harus dapat diungkapkan kembali (recovery). Karena tujuan steganografi adalah data hiding, maka sewaktu-waktu data rahasia di dalam citra penampung harus dapat diambil kembali untuk digunakan lebih lanjut.
+Penyembunyian data dilakukan dengan mengganti bit-bit data di dalam segmen citra dengan bit-bit data rahasia. Metode  yang paling sederhana adalah metode modifikasi LSB (Least Significant Bit Modification). 
+Pada susunan bit di dalam sebuah byte (1 byte = 8 bit), ada bit yang paling berarti (most significant bit atau MSB) dan bit yang  paling  kurang berarti (least significant bit atau LSB). 
+Bit yang cocok untuk diganti adalah bit LSB, sebab perubahan tersebut hanya mengubah nilai byte satu lebih tinggi atau satu lebih rendah dari nilai sebelumnya.
+Misalkan 6 byte tersebut menyatakan warna merah, maka perubahan satu bit LSB tidak mengubah warna merah tersebut secara berarti.  Lagi pula, mata manusia tidak dapat membedakan perubahan yang kecil. 
+Untuk memperkuat teknik penyembunyian data, bit-bit data rahasia tidak digunakan mengganti byte-byte yang berurutan, namun dipilih susunan byte secara acak. Misalnya jika terdapat 50 byte dan 6 bit data yang akan disembunyikan, maka maka byte yang diganti bit LSB-nya dipilih secara acak, misalkan byte nomor 36, 5, 21, 10, 18, 49. 
+Bilangan acak dapat dibangkitkan dengan program pseudorandom-number-generator (PRNG). PRNG menggunakan kunci rahasia untuk membangkitkan posisi pixel yang akan digunakan untuk menyembunyikan bit-bit. 
+PRNG dibangun dalam sejumlah cara, salah satunya dengan menggunakan algoritma kriptografi berbasis blok (block cipher). Tujuan dari enkripsi adalah menghasilkan sekumpulan bilangan acak  yang sama untuk setiap kunci enkripsi yang sama. Bilangan acak dihasilkan dengan cara memilih bit-bit dari sebuah blok data hasil enkripsi. 
+Sayangnya, metode modifikasi LSB kurang bagus untuk steganografi, karena robustness-nya rendah. Selain itu, dapat terjadi kasus penurunan jumlah warna (fidelity rendah).
+Steganografi (steganography) adalah ilmu dan seni menyembunyikan pesan rahasia (hiding message)  sedemikian sehingga keberadaan (eksistensi) pesan tidak terdeteksi oleh indera manusia. 
+Kata steganorafi berasal dari Bahaya Yunani yang berarti “tulisan tersembunyi” (covered writing). 
+Steganografi membutuhkan dua properti: wadah penampung dan data rahasia yang akan disembunyikan. 
+Steganografi membutuhkan dua properti: wadah penampung dan data rahasia yang akan disembunyikan. 
+Steganografi dapat dipandang sebagai kelanjutan kriptografi. Jika pada kriptografi, data yang telah disandikan (ciphertext) tetap tersedia, maka dengan steganografi cipherteks dapat disembunyikan sehingga pihak ketiga tidak mengetahui keberadaannya. 
+Di negara-negara yang melakukan penyensoran informasi, steganografi sering digunakan untuk menyembunyikan pesan-pesan melalui gambar (images), video, atau suara (audio). 
+Steganografi sudah dikenal oleh bangsa Yunani. Herodatus, penguasa Yunani, mengirim pesan rahasia dengan menggunakan kepala budak atau prajurit sebagai media. Dalam hal ini, rambut budak dibotaki, lalu pesan rahasia ditulis pada kulit kepala budak. Ketika rambut budak tumbuh, budak tersebut diutus untuk membawa pesan rahasia di balik rambutnya. 
+Bangsa Romawi mengenal steganografi dengan menggunakan tinta tak-tampak (invisible ink) untuk menuliskan pesan. Tinta tersebut dibuat dari campuran sari buah, susu, dan cuka. Jika tinta digunakan untuk menulis maka tulisannya tidak tampak. Tulisan di atas kertas dapat dibaca dengan cara memanaskan kertas tersebut.
+Sebagai contoh ilustrasi, di bawah ini adalah citra lada (peppers.bmp) yang akan digunakan untuk menyembunyikan sebuah dokumen word (hendro.doc). 
+Steganografi yang dibahas di sini adalah penyembunyian data di dalam citra digital saja. Meskipun demikian, penyembunyian data dapat juga dilakukan pada wadah berupa suara digital, teks, ataupun video. 
+Penyembunyian data rahasia ke dalam citra digital akan mengubah kualitas citra tersebut. Kriteria yang harus diperhatikan dalam penyembunyian data adalah: 
+Fidelity. Mutu citra penampung tidak jauh berubah. Setelah penambahan data rahasia, citra hasil steganografi masih terlihat dengan baik. Pengamat tidak mengetahui kalau di dalam citra tersebut terdapat data rahasia. 
+Robustness. Data yang disembunyikan harus tahan terhadap manipulasi yang dilakukan pada citra penampung (seperti pengubahan kontras, penajaman, pemampatan, rotasi, perbesaran gambar, pemotongan (cropping), enkripsi, dan sebagainya). Bila pada citra dilakukan operasi pengolahan citra, maka data yang disembunyikan tidak rusak. 
+Recovery. Data yang disembunyikan harus dapat diungkapkan kembali (recovery). Karena tujuan steganografi adalah data hiding, maka sewaktu-waktu data rahasia di dalam citra penampung harus dapat diambil kembali untuk digunakan lebih lanjut.
+Penyembunyian data dilakukan dengan mengganti bit-bit data di dalam segmen citra dengan bit-bit data rahasia. Metode  yang paling sederhana adalah metode modifikasi LSB (Least Significant Bit Modification). 
+Pada susunan bit di dalam sebuah byte (1 byte = 8 bit), ada bit yang paling berarti (most significant bit atau MSB) dan bit yang  paling  kurang berarti (least significant bit atau LSB). 
+Bit yang cocok untuk diganti adalah bit LSB, sebab perubahan tersebut hanya mengubah nilai byte satu lebih tinggi atau satu lebih rendah dari nilai sebelumnya.
+Misalkan 6 byte tersebut menyatakan warna merah, maka perubahan satu bit LSB tidak mengubah warna merah tersebut secara berarti.  Lagi pula, mata manusia tidak dapat membedakan perubahan yang kecil. 
+Untuk memperkuat teknik penyembunyian data, bit-bit data rahasia tidak digunakan mengganti byte-byte yang berurutan, namun dipilih susunan byte secara acak. Misalnya jika terdapat 50 byte dan 6 bit data yang akan disembunyikan, maka maka byte yang diganti bit LSB-nya dipilih secara acak, misalkan byte nomor 36, 5, 21, 10, 18, 49. 
+Bilangan acak dapat dibangkitkan dengan program pseudorandom-number-generator (PRNG). PRNG menggunakan kunci rahasia untuk membangkitkan posisi pixel yang akan digunakan untuk menyembunyikan bit-bit. 
+PRNG dibangun dalam sejumlah cara, salah satunya dengan menggunakan algoritma kriptografi berbasis blok (block cipher). Tujuan dari enkripsi adalah menghasilkan sekumpulan bilangan acak  yang sama untuk setiap kunci enkripsi yang sama. Bilangan acak dihasilkan dengan cara memilih bit-bit dari sebuah blok data hasil enkripsi. 
+Sayangnya, metode modifikasi LSB kurang bagus untuk steganografi, karena robustness-nya rendah. Selain itu, dapat terjadi kasus penurunan jumlah warna (fidelity rendah).
+Steganografi (steganography) adalah ilmu dan seni menyembunyikan pesan rahasia (hiding message)  sedemikian sehingga keberadaan (eksistensi) pesan tidak terdeteksi oleh indera manusia. 
+Kata steganorafi berasal dari Bahaya Yunani yang berarti “tulisan tersembunyi” (covered writing). 
+Steganografi membutuhkan dua properti: wadah penampung dan data rahasia yang akan disembunyikan. 
+Steganografi membutuhkan dua properti: wadah penampung dan data rahasia yang akan disembunyikan. 
+Steganografi dapat dipandang sebagai kelanjutan kriptografi. Jika pada kriptografi, data yang telah disandikan (ciphertext) tetap tersedia, maka dengan steganografi cipherteks dapat disembunyikan sehingga pihak ketiga tidak mengetahui keberadaannya. 
+Di negara-negara yang melakukan penyensoran informasi, steganografi sering digunakan untuk menyembunyikan pesan-pesan melalui gambar (images), video, atau suara (audio). 
+Steganografi sudah dikenal oleh bangsa Yunani. Herodatus, penguasa Yunani, mengirim pesan rahasia dengan menggunakan kepala budak atau prajurit sebagai media. Dalam hal ini, rambut budak dibotaki, lalu pesan rahasia ditulis pada kulit kepala budak. Ketika rambut budak tumbuh, budak tersebut diutus untuk membawa pesan rahasia di balik rambutnya. 
+Bangsa Romawi mengenal steganografi dengan menggunakan tinta tak-tampak (invisible ink) untuk menuliskan pesan. Tinta tersebut dibuat dari campuran sari buah, susu, dan cuka. Jika tinta digunakan untuk menulis maka tulisannya tidak tampak. Tulisan di atas kertas dapat dibaca dengan cara memanaskan kertas tersebut.
+Sebagai contoh ilustrasi, di bawah ini adalah citra lada (peppers.bmp) yang akan digunakan untuk menyembunyikan sebuah dokumen word (hendro.doc). 
+Steganografi yang dibahas di sini adalah penyembunyian data di dalam citra digital saja. Meskipun demikian, penyembunyian data dapat juga dilakukan pada wadah berupa suara digital, teks, ataupun video. 
+Penyembunyian data rahasia ke dalam citra digital akan mengubah kualitas citra tersebut. Kriteria yang harus diperhatikan dalam penyembunyian data adalah: 
+Fidelity. Mutu citra penampung tidak jauh berubah. Setelah penambahan data rahasia, citra hasil steganografi masih terlihat dengan baik. Pengamat tidak mengetahui kalau di dalam citra tersebut terdapat data rahasia. 
+Robustness. Data yang disembunyikan harus tahan terhadap manipulasi yang dilakukan pada citra penampung (seperti pengubahan kontras, penajaman, pemampatan, rotasi, perbesaran gambar, pemotongan (cropping), enkripsi, dan sebagainya). Bila pada citra dilakukan operasi pengolahan citra, maka data yang disembunyikan tidak rusak. 
+Recovery. Data yang disembunyikan harus dapat diungkapkan kembali (recovery). Karena tujuan steganografi adalah data hiding, maka sewaktu-waktu data rahasia di dalam citra penampung harus dapat diambil kembali untuk digunakan lebih lanjut.
+Penyembunyian data dilakukan dengan mengganti bit-bit data di dalam segmen citra dengan bit-bit data rahasia. Metode  yang paling sederhana adalah metode modifikasi LSB (Least Significant Bit Modification). 
+Pada susunan bit di dalam sebuah byte (1 byte = 8 bit), ada bit yang paling berarti (most significant bit atau MSB) dan bit yang  paling  kurang berarti (least significant bit atau LSB). 
+Bit yang cocok untuk diganti adalah bit LSB, sebab perubahan tersebut hanya mengubah nilai byte satu lebih tinggi atau satu lebih rendah dari nilai sebelumnya.
+Misalkan 6 byte tersebut menyatakan warna merah, maka perubahan satu bit LSB tidak mengubah warna merah tersebut secara berarti.  Lagi pula, mata manusia tidak dapat membedakan perubahan yang kecil. 
+Untuk memperkuat teknik penyembunyian data, bit-bit data rahasia tidak digunakan mengganti byte-byte yang berurutan, namun dipilih susunan byte secara acak. Misalnya jika terdapat 50 byte dan 6 bit data yang akan disembunyikan, maka maka byte yang diganti bit LSB-nya dipilih secara acak, misalkan byte nomor 36, 5, 21, 10, 18, 49. 
+Bilangan acak dapat dibangkitkan dengan program pseudorandom-number-generator (PRNG). PRNG menggunakan kunci rahasia untuk membangkitkan posisi pixel yang akan digunakan untuk menyembunyikan bit-bit. 
+PRNG dibangun dalam sejumlah cara, salah satunya dengan menggunakan algoritma kriptografi berbasis blok (block cipher). Tujuan dari enkripsi adalah menghasilkan sekumpulan bilangan acak  yang sama untuk setiap kunci enkripsi yang sama. Bilangan acak dihasilkan dengan cara memilih bit-bit dari sebuah blok data hasil enkripsi. 
+Sayangnya, metode modifikasi LSB kurang bagus untuk steganografi, karena robustness-nya rendah. Selain itu, dapat terjadi kasus penurunan jumlah warna (fidelity rendah).
+Steganografi (steganography) adalah ilmu dan seni menyembunyikan pesan rahasia (hiding message)  sedemikian sehingga keberadaan (eksistensi) pesan tidak terdeteksi oleh indera manusia. 
+Kata steganorafi berasal dari Bahaya Yunani yang berarti “tulisan tersembunyi” (covered writing). 
+Steganografi membutuhkan dua properti: wadah penampung dan data rahasia yang akan disembunyikan. 
+Steganografi membutuhkan dua properti: wadah penampung dan data rahasia yang akan disembunyikan. 
+Steganografi dapat dipandang sebagai kelanjutan kriptografi. Jika pada kriptografi, data yang telah disandikan (ciphertext) tetap tersedia, maka dengan steganografi cipherteks dapat disembunyikan sehingga pihak ketiga tidak mengetahui keberadaannya. 
+Di negara-negara yang melakukan penyensoran informasi, steganografi sering digunakan untuk menyembunyikan pesan-pesan melalui gambar (images), video, atau suara (audio). 
+Steganografi sudah dikenal oleh bangsa Yunani. Herodatus, penguasa Yunani, mengirim pesan rahasia dengan menggunakan kepala budak atau prajurit sebagai media. Dalam hal ini, rambut budak dibotaki, lalu pesan rahasia ditulis pada kulit kepala budak. Ketika rambut budak tumbuh, budak tersebut diutus untuk membawa pesan rahasia di balik rambutnya. 
+Bangsa Romawi mengenal steganografi dengan menggunakan tinta tak-tampak (invisible ink) untuk menuliskan pesan. Tinta tersebut dibuat dari campuran sari buah, susu, dan cuka. Jika tinta digunakan untuk menulis maka tulisannya tidak tampak. Tulisan di atas kertas dapat dibaca dengan cara memanaskan kertas tersebut.
+Sebagai contoh ilustrasi, di bawah ini adalah citra lada (peppers.bmp) yang akan digunakan untuk menyembunyikan sebuah dokumen word (hendro.doc). 
+Steganografi yang dibahas di sini adalah penyembunyian data di dalam citra digital saja. Meskipun demikian, penyembunyian data dapat juga dilakukan pada wadah berupa suara digital, teks, ataupun video. 
+Penyembunyian data rahasia ke dalam citra digital akan mengubah kualitas citra tersebut. Kriteria yang harus diperhatikan dalam penyembunyian data adalah: 
+Fidelity. Mutu citra penampung tidak jauh berubah. Setelah penambahan data rahasia, citra hasil steganografi masih terlihat dengan baik. Pengamat tidak mengetahui kalau di dalam citra tersebut terdapat data rahasia. 
+Robustness. Data yang disembunyikan harus tahan terhadap manipulasi yang dilakukan pada citra penampung (seperti pengubahan kontras, penajaman, pemampatan, rotasi, perbesaran gambar, pemotongan (cropping), enkripsi, dan sebagainya). Bila pada citra dilakukan operasi pengolahan citra, maka data yang disembunyikan tidak rusak. 
+Recovery. Data yang disembunyikan harus dapat diungkapkan kembali (recovery). Karena tujuan steganografi adalah data hiding, maka sewaktu-waktu data rahasia di dalam citra penampung harus dapat diambil kembali untuk digunakan lebih lanjut.
+Penyembunyian data dilakukan dengan mengganti bit-bit data di dalam segmen citra dengan bit-bit data rahasia. Metode  yang paling sederhana adalah metode modifikasi LSB (Least Significant Bit Modification). 
+Pada susunan bit di dalam sebuah byte (1 byte = 8 bit), ada bit yang paling berarti (most significant bit atau MSB) dan bit yang  paling  kurang berarti (least significant bit atau LSB). 
+Bit yang cocok untuk diganti adalah bit LSB, sebab perubahan tersebut hanya mengubah nilai byte satu lebih tinggi atau satu lebih rendah dari nilai sebelumnya.
+Misalkan 6 byte tersebut menyatakan warna merah, maka perubahan satu bit LSB tidak mengubah warna merah tersebut secara berarti.  Lagi pula, mata manusia tidak dapat membedakan perubahan yang kecil. 
+Untuk memperkuat teknik penyembunyian data, bit-bit data rahasia tidak digunakan mengganti byte-byte yang berurutan, namun dipilih susunan byte secara acak. Misalnya jika terdapat 50 byte dan 6 bit data yang akan disembunyikan, maka maka byte yang diganti bit LSB-nya dipilih secara acak, misalkan byte nomor 36, 5, 21, 10, 18, 49. 
+Bilangan acak dapat dibangkitkan dengan program pseudorandom-number-generator (PRNG). PRNG menggunakan kunci rahasia untuk membangkitkan posisi pixel yang akan digunakan untuk menyembunyikan bit-bit. 
+PRNG dibangun dalam sejumlah cara, salah satunya dengan menggunakan algoritma kriptografi berbasis blok (block cipher). Tujuan dari enkripsi adalah menghasilkan sekumpulan bilangan acak  yang sama untuk setiap kunci enkripsi yang sama. Bilangan acak dihasilkan dengan cara memilih bit-bit dari sebuah blok data hasil enkripsi. 
+Sayangnya, metode modifikasi LSB kurang bagus untuk steganografi, karena robustness-nya rendah. Selain itu, dapat terjadi kasus penurunan jumlah warna (fidelity rendah).
+Steganografi (steganography) adalah ilmu dan seni menyembunyikan pesan rahasia (hiding message)  sedemikian sehingga keberadaan (eksistensi) pesan tidak terdeteksi oleh indera manusia. 
+Kata steganorafi berasal dari Bahaya Yunani yang berarti “tulisan tersembunyi” (covered writing). 
+Steganografi membutuhkan dua properti: wadah penampung dan data rahasia yang akan disembunyikan. 
+Steganografi membutuhkan dua properti: wadah penampung dan data rahasia yang akan disembunyikan. 
+Steganografi dapat dipandang sebagai kelanjutan kriptografi. Jika pada kriptografi, data yang telah disandikan (ciphertext) tetap tersedia, maka dengan steganografi cipherteks dapat disembunyikan sehingga pihak ketiga tidak mengetahui keberadaannya. 
+Di negara-negara yang melakukan penyensoran informasi, steganografi sering digunakan untuk menyembunyikan pesan-pesan melalui gambar (images), video, atau suara (audio). 
+Steganografi sudah dikenal oleh bangsa Yunani. Herodatus, penguasa Yunani, mengirim pesan rahasia dengan menggunakan kepala budak atau prajurit sebagai media. Dalam hal ini, rambut budak dibotaki, lalu pesan rahasia ditulis pada kulit kepala budak. Ketika rambut budak tumbuh, budak tersebut diutus untuk membawa pesan rahasia di balik rambutnya. 
+Bangsa Romawi mengenal steganografi dengan menggunakan tinta tak-tampak (invisible ink) untuk menuliskan pesan. Tinta tersebut dibuat dari campuran sari buah, susu, dan cuka. Jika tinta digunakan untuk menulis maka tulisannya tidak tampak. Tulisan di atas kertas dapat dibaca dengan cara memanaskan kertas tersebut.
+Sebagai contoh ilustrasi, di bawah ini adalah citra lada (peppers.bmp) yang akan digunakan untuk menyembunyikan sebuah dokumen word (hendro.doc). 
+Steganografi yang dibahas di sini adalah penyembunyian data di dalam citra digital saja. Meskipun demikian, penyembunyian data dapat juga dilakukan pada wadah berupa suara digital, teks, ataupun video. 
+Penyembunyian data rahasia ke dalam citra digital akan mengubah kualitas citra tersebut. Kriteria yang harus diperhatikan dalam penyembunyian data adalah: 
+Fidelity. Mutu citra penampung tidak jauh berubah. Setelah penambahan data rahasia, citra hasil steganografi masih terlihat dengan baik. Pengamat tidak mengetahui kalau di dalam citra tersebut terdapat data rahasia. 
+Robustness. Data yang disembunyikan harus tahan terhadap manipulasi yang dilakukan pada citra penampung (seperti pengubahan kontras, penajaman, pemampatan, rotasi, perbesaran gambar, pemotongan (cropping), enkripsi, dan sebagainya). Bila pada citra dilakukan operasi pengolahan citra, maka data yang disembunyikan tidak rusak. 
+Recovery. Data yang disembunyikan harus dapat diungkapkan kembali (recovery). Karena tujuan steganografi adalah data hiding, maka sewaktu-waktu data rahasia di dalam citra penampung harus dapat diambil kembali untuk digunakan lebih lanjut.
+Penyembunyian data dilakukan dengan mengganti bit-bit data di dalam segmen citra dengan bit-bit data rahasia. Metode  yang paling sederhana adalah metode modifikasi LSB (Least Significant Bit Modification). 
+Pada susunan bit di dalam sebuah byte (1 byte = 8 bit), ada bit yang paling berarti (most significant bit atau MSB) dan bit yang  paling  kurang berarti (least significant bit atau LSB). 
+Bit yang cocok untuk diganti adalah bit LSB, sebab perubahan tersebut hanya mengubah nilai byte satu lebih tinggi atau satu lebih rendah dari nilai sebelumnya.
+Misalkan 6 byte tersebut menyatakan warna merah, maka perubahan satu bit LSB tidak mengubah warna merah tersebut secara berarti.  Lagi pula, mata manusia tidak dapat membedakan perubahan yang kecil. 
+Untuk memperkuat teknik penyembunyian data, bit-bit data rahasia tidak digunakan mengganti byte-byte yang berurutan, namun dipilih susunan byte secara acak. Misalnya jika terdapat 50 byte dan 6 bit data yang akan disembunyikan, maka maka byte yang diganti bit LSB-nya dipilih secara acak, misalkan byte nomor 36, 5, 21, 10, 18, 49. 
+Bilangan acak dapat dibangkitkan dengan program pseudorandom-number-generator (PRNG). PRNG menggunakan kunci rahasia untuk membangkitkan posisi pixel yang akan digunakan untuk menyembunyikan bit-bit. 
+PRNG dibangun dalam sejumlah cara, salah satunya dengan menggunakan algoritma kriptografi berbasis blok (block cipher). Tujuan dari enkripsi adalah menghasilkan sekumpulan bilangan acak  yang sama untuk setiap kunci enkripsi yang sama. Bilangan acak dihasilkan dengan cara memilih bit-bit dari sebuah blok data hasil enkripsi. 
+Sayangnya, metode modifikasi LSB kurang bagus untuk steganografi, karena robustness-nya rendah. Selain itu, dapat terjadi kasus penurunan jumlah warna (fidelity rendah).
+Steganografi (steganography) adalah ilmu dan seni menyembunyikan pesan rahasia (hiding message)  sedemikian sehingga keberadaan (eksistensi) pesan tidak terdeteksi oleh indera manusia. 
+Kata steganorafi berasal dari Bahaya Yunani yang berarti “tulisan tersembunyi” (covered writing). 
+Steganografi membutuhkan dua properti: wadah penampung dan data rahasia yang akan disembunyikan. 
+Steganografi membutuhkan dua properti: wadah penampung dan data rahasia yang akan disembunyikan. 
+Steganografi dapat dipandang sebagai kelanjutan kriptografi. Jika pada kriptografi, data yang telah disandikan (ciphertext) tetap tersedia, maka dengan steganografi cipherteks dapat disembunyikan sehingga pihak ketiga tidak mengetahui keberadaannya. 
+Di negara-negara yang melakukan penyensoran informasi, steganografi sering digunakan untuk menyembunyikan pesan-pesan melalui gambar (images), video, atau suara (audio). 
+Steganografi sudah dikenal oleh bangsa Yunani. Herodatus, penguasa Yunani, mengirim pesan rahasia dengan menggunakan kepala budak atau prajurit sebagai media. Dalam hal ini, rambut budak dibotaki, lalu pesan rahasia ditulis pada kulit kepala budak. Ketika rambut budak tumbuh, budak tersebut diutus untuk membawa pesan rahasia di balik rambutnya. 
+Bangsa Romawi mengenal steganografi dengan menggunakan tinta tak-tampak (invisible ink) untuk menuliskan pesan. Tinta tersebut dibuat dari campuran sari buah, susu, dan cuka. Jika tinta digunakan untuk menulis maka tulisannya tidak tampak. Tulisan di atas kertas dapat dibaca dengan cara memanaskan kertas tersebut.
+Sebagai contoh ilustrasi, di bawah ini adalah citra lada (peppers.bmp) yang akan digunakan untuk menyembunyikan sebuah dokumen word (hendro.doc). 
+Steganografi yang dibahas di sini adalah penyembunyian data di dalam citra digital saja. Meskipun demikian, penyembunyian data dapat juga dilakukan pada wadah berupa suara digital, teks, ataupun video. 
+Penyembunyian data rahasia ke dalam citra digital akan mengubah kualitas citra tersebut. Kriteria yang harus diperhatikan dalam penyembunyian data adalah: 
+Fidelity. Mutu citra penampung tidak jauh berubah. Setelah penambahan data rahasia, citra hasil steganografi masih terlihat dengan baik. Pengamat tidak mengetahui kalau di dalam citra tersebut terdapat data rahasia. 
+Robustness. Data yang disembunyikan harus tahan terhadap manipulasi yang dilakukan pada citra penampung (seperti pengubahan kontras, penajaman, pemampatan, rotasi, perbesaran gambar, pemotongan (cropping), enkripsi, dan sebagainya). Bila pada citra dilakukan operasi pengolahan citra, maka data yang disembunyikan tidak rusak. 
+Recovery. Data yang disembunyikan harus dapat diungkapkan kembali (recovery). Karena tujuan steganografi adalah data hiding, maka sewaktu-waktu data rahasia di dalam citra penampung harus dapat diambil kembali untuk digunakan lebih lanjut.
+Penyembunyian data dilakukan dengan mengganti bit-bit data di dalam segmen citra dengan bit-bit data rahasia. Metode  yang paling sederhana adalah metode modifikasi LSB (Least Significant Bit Modification). 
+Pada susunan bit di dalam sebuah byte (1 byte = 8 bit), ada bit yang paling berarti (most significant bit atau MSB) dan bit yang  paling  kurang berarti (least significant bit atau LSB). 
+Bit yang cocok untuk diganti adalah bit LSB, sebab perubahan tersebut hanya mengubah nilai byte satu lebih tinggi atau satu lebih rendah dari nilai sebelumnya.
+Misalkan 6 byte tersebut menyatakan warna merah, maka perubahan satu bit LSB tidak mengubah warna merah tersebut secara berarti.  Lagi pula, mata manusia tidak dapat membedakan perubahan yang kecil. 
+Untuk memperkuat teknik penyembunyian data, bit-bit data rahasia tidak digunakan mengganti byte-byte yang berurutan, namun dipilih susunan byte secara acak. Misalnya jika terdapat 50 byte dan 6 bit data yang akan disembunyikan, maka maka byte yang diganti bit LSB-nya dipilih secara acak, misalkan byte nomor 36, 5, 21, 10, 18, 49. 
+Bilangan acak dapat dibangkitkan dengan program pseudorandom-number-generator (PRNG). PRNG menggunakan kunci rahasia untuk membangkitkan posisi pixel yang akan digunakan untuk menyembunyikan bit-bit. 
+PRNG dibangun dalam sejumlah cara, salah satunya dengan menggunakan algoritma kriptografi berbasis blok (block cipher). Tujuan dari enkripsi adalah menghasilkan sekumpulan bilangan acak  yang sama untuk setiap kunci enkripsi yang sama. Bilangan acak dihasilkan dengan cara memilih bit-bit dari sebuah blok data hasil enkripsi. 
+Sayangnya, metode modifikasi LSB kurang bagus untuk steganografi, karena robustness-nya rendah. Selain itu, dapat terjadi kasus penurunan jumlah warna (fidelity rendah).
+Steganografi (steganography) adalah ilmu dan seni menyembunyikan pesan rahasia (hiding message)  sedemikian sehingga keberadaan (eksistensi) pesan tidak terdeteksi oleh indera manusia. 
+Kata steganorafi berasal dari Bahaya Yunani yang berarti “tulisan tersembunyi” (covered writing). 
+Steganografi membutuhkan dua properti: wadah penampung dan data rahasia yang akan disembunyikan. 

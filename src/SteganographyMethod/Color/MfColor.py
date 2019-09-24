@@ -127,10 +127,11 @@ def encode(img, message):
     
     # kombinasi nilai val1, val2, val3 akan menyimpan nilai infromasi panjang pesan.
     # Nilai ini dibutuhkan ketika proses decode
-    val1, val2, val3 = cl.setCharLength(len(message))
+    val1, val2, val3, val4 = cl.setCharLength(len(message))
 
     # ketiga nilai tersebut akan disimpan pada pixel terakhir
     imgResult[rows-1, cols-1] = [val1, val2, val3]
+    imgResult[rows-1, cols-2][0] = val4
 
     return imgResult
 
@@ -139,7 +140,7 @@ def decode(img):
     rows, cols = img.shape[:2]
 
     # proses mendapatkan nilai panjang pesan. Sehingga proses extraksi akan berhenti ketika semua pesan sudah diextract
-    charLength = cl.getCharLenth(img[rows-1, cols-1][0], img[rows-1, cols-1][1], img[rows-1, cols-1][2])
+    charLength = cl.getCharLenth(img[rows-1, cols-1][0], img[rows-1, cols-1][1], img[rows-1, cols-1][2], img[rows-1, cols-2][0])
 
     # panjang karakter dikalikan dengan 8 karena 1 karakter = 8 bit integer
     charLength = charLength * 8

@@ -26,3 +26,6 @@ def bit2int(bit):
     val = ''.join(str(e) for e in bit)
     result = int(val, 2)
     return result
+
+if __name__ == "__main__":
+    print(word2bit('W'))
