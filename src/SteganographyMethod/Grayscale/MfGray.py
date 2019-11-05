@@ -14,18 +14,19 @@ def qTable(val):
     elif val in range(8,16):
         return 8, 3
     elif val in range(16,32):
-        return 16, 3
+        return 16, 4
     elif val in range(32,64):
-        return 32, 3
+        return 32, 5
     elif val in range(64,128):
-        return 64, 3
+        return 64, 6
     elif val in range(128,256):
-        return 128, 3
+        return 128, 7
 
 # fungsi encode pesan
-def encode(img, message):
+def encode(img, message, isColor):
     # konversi gambar ke grayscale
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    if isColor:
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # proses merubah pesan string menjadi bit
     bitMessage = bo.word2bit(message)

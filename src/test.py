@@ -8,30 +8,28 @@ import SteganographyMethod.Grayscale.PvdGray as pg
 import SteganographyMethod.Grayscale.MfGray as mg
 import SubProcess.BitOperation as bo
 
-img = np.zeros((4, 4, 3),np.uint8)*255
-pesan = 'W'
+pesan = 'a'
 pesanBit = bo.word2bit(pesan)
 print('Isi pesan : ', pesan, ' | Setelah dikonversi menjadi bit : ', pesanBit)
-val = [
-    [234, 163, 187, 192],
+img = np.array([
+    [234, 120, 187, 192],
     [89, 24, 5, 163],
     [192, 27, 9, 120],
     [77, 44, 6, 180]
-]
+])
 
 print('\nnilai matrix sebelum encode : ')
 for i in range(4):
     for j in range(4):
-        img[i,j] = val[i][j]
-        print(img[i,j,0],'\t', end = ' ')
+        print(img[i,j],'\t', end = ' ')
     print()
 
-imgResult = mg.encode(img, pesan)
+imgResult = mg.encode(img, pesan, False)
 print('\nnilai matrix setelah encode : ')
 for i in range(4):
     for j in range(4):
         print(imgResult[i,j],'\t', end = ' ')
     print()
-cv2.waitKey(0)
+# cv2.waitKey(0)
 
 # print(math.log2(32))
